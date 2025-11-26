@@ -16,7 +16,7 @@ export const Desktop = (): JSX.Element => {
       <PortfolioSection />
 
       <section className="w-full flex flex-col items-center bg-[#dce5e5] rounded-[0px_0px_20px_20px] px-20 pt-[92px] pb-[92px]">
-        <h2 className="[font-family:'Poppins',Helvetica] font-extrabold text-[#1e2929] text-[50px] tracking-[0] leading-[normal] mb-12">
+        <h2 className="font-extrabold text-[#1e2929] text-[50px] tracking-[0] leading-[1] mb-12">
           Let&#39;s get in Touch!
         </h2>
         <ContactSection />

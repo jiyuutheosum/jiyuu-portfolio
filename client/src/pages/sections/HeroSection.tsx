@@ -1,9 +1,11 @@
 import React from "react";
+import { motion } from "framer-motion";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar";
+import SocialPill from "@/components/SocialPill";
 
 const socialIcons = [
   { id: 1, alt: "Social icon 1" },
@@ -15,7 +17,7 @@ const socialIcons = [
 
 export const HeroSection = (): JSX.Element => {
   return (
-    <section className="flex flex-col w-full items-center gap-[11px] px-4 py-[125px] bg-[#dce5e5]">
+    <motion.section id="home" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex flex-col w-full items-center gap-[11px] px-4 py-[125px] bg-[#dce5e5]">
       <Avatar className="w-[200px] h-[200px]">
         <AvatarImage
           src="/figmaAssets/ellipse-1.png"
@@ -25,19 +27,15 @@ export const HeroSection = (): JSX.Element => {
         <AvatarFallback>JY</AvatarFallback>
       </Avatar>
 
-      <div className="[font-family:'Poppins',Helvetica] font-semibold text-[#1e2929] text-2xl tracking-[0] leading-[normal]">
+      <div className="font-semibold text-[#1e2929] text-[28px] tracking-[0] leading-[1]">
         @Jiyuu
       </div>
 
-      <div className="[font-family:'Poppins',Helvetica] font-normal text-[#1e2929] text-[15px] tracking-[0] leading-[normal]">
+      <div className="font-normal text-[#1e2929] text-[16px] tracking-[0] leading-[1.6] max-w-[720px] text-center">
         &quot;Building clean, intuitive digital experiences&quot;
       </div>
 
-      <img
-        className="w-[308px] h-[66px] mt-2"
-        alt="Social media icons"
-        src="/figmaAssets/group-1.png"
-      />
-    </section>
+      <SocialPill />
+    </motion.section>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 
 const skillsData = [
@@ -22,9 +23,9 @@ const skillsDataRow2 = [
 
 export const SkillsSection = (): JSX.Element => {
   return (
-    <section className="w-full bg-[#dce5e5] py-11">
+    <motion.section id="skills" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="w-full bg-[#dce5e5] py-11">
       <div className="flex flex-col items-center gap-8">
-        <h2 className="[font-family:'Poppins',Helvetica] font-extrabold text-black text-3xl tracking-[0] leading-[normal]">
+        <h2 className="font-extrabold text-black text-[34px] tracking-[0] leading-[1]">
           SKILLS
         </h2>
 
@@ -33,9 +34,9 @@ export const SkillsSection = (): JSX.Element => {
             {skillsData.map((skill, index) => (
               <Badge
                 key={index}
-                className={`${skill.className} rounded-[20px] px-[30px] py-1.5 h-[35px] min-w-[100px] flex items-center justify-center`}
+                className={`${skill.className} rounded-[20px] px-[26px] py-2 h-[36px] min-w-[100px] flex items-center justify-center`}
               >
-                <span className="[font-family:'Poppins',Helvetica] font-semibold text-white text-[15px] tracking-[0] leading-[normal] whitespace-nowrap">
+                   <span className="font-semibold text-white text-[15px] tracking-[0] leading-[normal] whitespace-nowrap">
                   {skill.name}
                 </span>
               </Badge>
@@ -46,9 +47,9 @@ export const SkillsSection = (): JSX.Element => {
             {skillsDataRow2.map((skill, index) => (
               <Badge
                 key={index}
-                className={`${skill.className} rounded-[20px] px-[30px] py-1.5 h-[35px] min-w-[100px] flex items-center justify-center`}
+                className={`${skill.className} rounded-[20px] px-[26px] py-2 h-[36px] min-w-[100px] flex items-center justify-center`}
               >
-                <span className="[font-family:'Poppins',Helvetica] font-semibold text-white text-[15px] tracking-[0] leading-[normal] whitespace-nowrap">
+                <span className="font-semibold text-white text-[15px] tracking-[0] leading-[1] whitespace-nowrap">
                   {skill.name}
                 </span>
               </Badge>
@@ -56,6 +57,6 @@ export const SkillsSection = (): JSX.Element => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };

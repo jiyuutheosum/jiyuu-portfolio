@@ -1,119 +1,61 @@
+import React, { useState } from "react";
 import { ChevronRightIcon } from "lucide-react";
-import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
+import ProjectCard from "@/components/ProjectCard";
+import TabSwitcher from "@/components/TabSwitcher";
+import { motion } from "framer-motion";
 
-const portfolioCards = [
-  {
-    id: 1,
-    image: "#d9d9d9",
-  },
-  {
-    id: 2,
-    image: "#d9d9d9",
-  },
+const DEV_PROJECTS = [
+  { id: 1, title: "Moongle Buddy", description: "Small e-commerce flow and cart checkout UI", tech: ["Firebase", "React"] },
+  { id: 2, title: "Larga.CGY", description: "Marketing website concept with CMS integration", tech: ["React", "Tailwind"] },
+];
+
+const DESIGN_PROJECTS = [
+  { id: 3, title: "Landing Concepts", description: "Conversion-focused landing experiments.", tech: ["Figma"] },
+  { id: 4, title: "Marketing Assets", description: "Campaign artwork & hero visuals.", tech: ["Canva", "Figma"] },
 ];
 
 const paginationDots = [{ active: true }, { active: false }, { active: false }];
 
 export const PortfolioSection = (): JSX.Element => {
+  const [tab, setTab] = useState<string>("Development");
+  const items = tab === "Development" ? DEV_PROJECTS : DESIGN_PROJECTS;
+
   return (
-    <section className="w-full bg-[#dce5e5] py-14 px-20">
+    <motion.section id="portfolio" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="w-full bg-[#dce5e5] py-14 px-20">
       <div className="max-w-[1280px] mx-auto">
-        <h2 className="[-webkit-text-stroke:1px_#000000] [font-family:'Poppins',Helvetica] font-semibold text-black text-3xl tracking-[0] leading-[normal] mb-[113px]">
+        <h2 className="[-webkit-text-stroke:1px_#000000] font-semibold text-black text-[36px] tracking-[0] leading-[1] mb-[113px]">
           Portfolio
         </h2>
 
-        <Tabs defaultValue="development" className="w-full">
-          <div className="flex justify-center mb-[43px]">
-            <TabsList className="bg-white rounded-[25px] h-[65px] w-[845px] p-[10px]">
-              <TabsTrigger
-                value="development"
-                className="bg-[#344647] data-[state=active]:bg-[#344647] rounded-[20px] h-[45px] flex-1 [font-family:'Poppins',Helvetica] font-normal text-white data-[state=active]:text-white text-[25px] tracking-[0] leading-[normal]"
-              >
-                Development
-              </TabsTrigger>
-              <TabsTrigger
-                value="design"
-                className="data-[state=active]:bg-[#344647] rounded-[20px] h-[45px] flex-1 [font-family:'Poppins',Helvetica] font-normal text-[#344647] data-[state=active]:text-white text-[25px] tracking-[0] leading-[normal]"
-              >
-                Design
-              </TabsTrigger>
-            </TabsList>
+        <div className="flex justify-center mb-[43px]">
+          <TabSwitcher options={["Development", "Design"]} value={tab} onChange={setTab} />
+        </div>
+
+        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+          {items.map((p) => (
+            <ProjectCard key={p.id} title={p.title} description={p.description} tech={p.tech} />
+          ))}
+        </motion.div>
+
+        <div className="flex items-center justify-between">
+          <div className="flex items-center justify-center gap-4 flex-1">
+            {paginationDots.map((dot, index) => (
+              <div
+                key={index}
+                className={`w-[15px] h-[15px] rounded-[7.5px] ${
+                  dot.active ? "bg-[#1e2929]" : "bg-neutral-100"
+                }`}
+              />
+            ))}
           </div>
 
-          <TabsContent value="development" className="mt-0">
-            <div className="grid grid-cols-2 gap-[25px] mb-[25px]">
-              {portfolioCards.map((card) => (
-                <Card
-                  key={card.id}
-                  className="bg-white rounded-[20px] border-0 shadow-none"
-                >
-                  <CardContent className="p-0">
-                    <div
-                      className="w-full h-[188px] rounded-t-[20px]"
-                      style={{ backgroundColor: card.image }}
-                    />
-                    <div className="h-[187px]" />
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center justify-center gap-4 flex-1">
-                {paginationDots.map((dot, index) => (
-                  <div
-                    key={index}
-                    className={`w-[15px] h-[15px] rounded-[7.5px] ${
-                      dot.active ? "bg-[#1e2929]" : "bg-neutral-100"
-                    }`}
-                  />
-                ))}
-              </div>
-              <ChevronRightIcon className="w-[50px] h-[25px] text-[#344647]" />
-            </div>
-          </TabsContent>
-
-          <TabsContent value="design" className="mt-0">
-            <div className="grid grid-cols-2 gap-[25px] mb-[25px]">
-              {portfolioCards.map((card) => (
-                <Card
-                  key={card.id}
-                  className="bg-white rounded-[20px] border-0 shadow-none"
-                >
-                  <CardContent className="p-0">
-                    <div
-                      className="w-full h-[188px] rounded-t-[20px]"
-                      style={{ backgroundColor: card.image }}
-                    />
-                    <div className="h-[187px]" />
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center justify-center gap-4 flex-1">
-                {paginationDots.map((dot, index) => (
-                  <div
-                    key={index}
-                    className={`w-[15px] h-[15px] rounded-[7.5px] ${
-                      dot.active ? "bg-[#1e2929]" : "bg-neutral-100"
-                    }`}
-                  />
-                ))}
-              </div>
-              <ChevronRightIcon className="w-[50px] h-[25px] text-[#344647]" />
-            </div>
-          </TabsContent>
-        </Tabs>
+          <button className="w-10 h-10 rounded-full bg-[#1e2929] text-white flex items-center justify-center shadow-md hover:bg-black transition-colors">
+            <ChevronRightIcon className="w-5 h-5" />
+          </button>
+        </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
+
+export default PortfolioSection;

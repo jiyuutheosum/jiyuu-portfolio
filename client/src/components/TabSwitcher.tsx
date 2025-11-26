@@ -9,22 +9,22 @@ type Props = {
 
 export const TabSwitcher: React.FC<Props> = ({ options, value, onChange }) => {
   return (
-    <div className="inline-flex items-center rounded-lg bg-slate-100 p-1 gap-1">
+    <div className="inline-flex items-center rounded-[30px] bg-white p-2 gap-2 shadow-sm border border-transparent w-[845px] h-[65px]">
       {options.map((opt) => {
         const selected = opt === value;
         return (
           <button
             key={opt}
             onClick={() => onChange(opt)}
-            className={`relative px-4 py-2 rounded-lg text-sm transition-all duration-150 ${
-              selected ? "text-white" : "text-slate-700"
+            className={`relative px-8 py-2 rounded-[20px] text-[25px] transition-all duration-200 flex-1 ${
+              selected ? "text-white" : "text-[#344647]"
             }`}
           >
             {selected && (
               <motion.div
                 layoutId="tab-focus"
-                className="absolute inset-0 rounded-lg bg-emerald-600 z-0"
-                style={{ boxShadow: "0 6px 22px rgba(16, 185, 129, 0.18)" }}
+                className="absolute inset-0 rounded-[20px] bg-[#344647] z-0"
+                style={{ boxShadow: "0 10px 26px rgba(16, 22, 20, 0.16)" }}
               />
             )}
 
