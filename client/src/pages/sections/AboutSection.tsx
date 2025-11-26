@@ -5,19 +5,19 @@ import { Button } from "@/components/ui/button";
 export const AboutSection = (): JSX.Element => {
   const images = [
     {
-      src: "/figmaAssets/rectangle-3.png",
+      src: "/Assets/photo-1.png",
       alt: "Rectangle",
       zIndex: "z-10",
       transform: "translate-x-0",
     },
     {
-      src: "/figmaAssets/rectangle-2.png",
+      src: "/Assets/photo-2.png",
       alt: "Rectangle",
       zIndex: "z-20",
       transform: "translate-x-[26px]",
     },
     {
-      src: "/figmaAssets/rectangle-4.png",
+      src: "/Assets/photo-3.png",
       alt: "Rectangle",
       zIndex: "z-30",
       transform: "translate-x-[64px]",
@@ -56,6 +56,21 @@ export const AboutSection = (): JSX.Element => {
                   );
                 })}
               </AnimatePresence>
+            </div>
+
+            {/* Next button below the photos (left column) - centered on mobile, left-aligned on large screens */}
+            <div className="mt-6 flex justify-center lg:justify-start">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIdx((s) => (s + 1) % images.length)}
+                aria-label="Next photo"
+                className="bg-[#1e2929] text-white shadow-lg hover:bg-[#000000] border-0"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-white">
+                  <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Button>
             </div>
           </div>
 

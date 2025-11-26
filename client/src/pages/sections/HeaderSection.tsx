@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   NavigationMenu,
@@ -16,8 +16,23 @@ const navigationItems = [
 ];
 
 export const HeaderSection = (): JSX.Element => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="flex w-full items-center justify-between px-[108px] py-[31px] bg-[#dce5e5] rounded-[20px_20px_0px_0px]">
+    <header
+      className={`fixed left-0 right-0 top-0 z-40 transition-all duration-300 ${
+        scrolled ? "backdrop-blur-md bg-white/40 dark:bg-black/30 shadow-sm" : "bg-transparent"
+      }`}
+      style={{ WebkitBackdropFilter: scrolled ? "blur(6px)" : undefined }}
+    >
+      <div className="flex w-full items-center justify-between px-[108px] py-[22px] rounded-b-[20px]">
       <div className="font-bold text-[#1e2929] text-[50px] tracking-[0] leading-[1]">
         jiy.ui
       </div>
@@ -47,6 +62,7 @@ export const HeaderSection = (): JSX.Element => {
           ))}
         </NavigationMenuList>
       </NavigationMenu>
+      </div>
     </header>
   );
 };

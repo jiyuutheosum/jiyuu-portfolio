@@ -20,7 +20,7 @@ export const HeroSection = (): JSX.Element => {
     <motion.section id="home" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex flex-col w-full items-center gap-[11px] px-4 py-[125px] bg-[#dce5e5]">
       <Avatar className="w-[200px] h-[200px]">
         <AvatarImage
-          src="/figmaAssets/ellipse-1.png"
+          src="/Assets/profile.png"
           alt="Profile"
           className="object-cover"
         />
