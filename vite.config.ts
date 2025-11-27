@@ -36,6 +36,8 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    // ensure assets are emitted in 'assets' (lowercase) so GitHub Pages won't suffer case-sensitive path issues
+    assetsDir: "assets",
   },
 
   server: {
